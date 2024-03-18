@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Text Manipulation</title>
+	<style type="text/css">
+	
+		body{
+			background-color: white;
+		}
+		.aniTheme
+		{
+			width: 250px;
+			height: 40px;
+			background-color: cyan;   
+			display: flex;
+			margin: 0 auto;
+			justify-content: center;
+			border-radius: 10px;
+			border: none;
+			gap: 100px;
+		}
+		.aniTheme button{
+			border-radius: 10px;
+			border: none;
+		}
+		#themeDark{
+			background-color: black;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+	<h1 align="center">TEXT MANIPULATION</h1><br>
+	<h3 align="center">Here we Performs task on Text</h3><br><br>
+	<div>
+		<form align="center">
+			<label>Enter Your Text Here</label><br><br>
+			<textarea rows="10" cols="40" id="text" onkeyup="startPreview()" autofocus style="background-color: black; color: white; font-size: 20px;"></textarea><br>
+			<button type="button" id="upperCase" onclick="transformUpperCase()">Upper Case</button>
+			<button type="button" id="lowerCase" onclick="transformLowerCase()">Lower Case</button>
+			<button type="button" id="fontChange" onclick="transformFont()">Change Font</button><br><br>
+			<section class="aniTheme">
+				<button type="button" id="themeDark" onclick="themeChangeToDark()">Dark Mood</button>
+				<button type="button" id="themeLight" onclick="themeChangeToLight()" style="opacity: 0;">Light Mood</button>
+			</section>
+			<p id="preview"></p>
+
+
+		</form>
+	</div>
+
+	<script type="text/javascript">
+
+		let text = document.getElementById("text");
+		let bg = document.getElementsByTagName("body")[0];
+		let themeLight = document.getElementById("themeLight");
+		let themeDark = document.getElementById("themeDark");
+		let section = document.getElementsByClassName("aniTheme")[0];
+		let textArea = document.getElementsByTagName("textarea")[0];
+		let preview = (document.getElementById("preview"));
+
+		function transformUpperCase()
+		{
+			
+			let newText = text.value.toUpperCase();
+			text.value = newText; 
+		}
+		function transformLowerCase()
+		{
+			let newLowerTxt = text.value.toLowerCase();
+			text.value = newLowerTxt ;
+		}
+		function transformFont(){
+
+			// let font = prompt();
+			var options = ["Algerian", "Arial Black", "Bodoni MT Black", "Bahnschrift"];
+
+// Prompt the user to select an option
+var selectedIndex = prompt("Select an option and type option serial no:\n" + options.join("\n"));
+
+// Check if an option was selected
+if (selectedIndex !== null && selectedIndex !== "") {
+  // Convert the input to a number (assuming it's a valid index)
+  selectedIndex = selectedIndex - 1;
+  
+  // Check if the selected index is valid
+  if (!isNaN(selectedIndex) && selectedIndex >= 0 && selectedIndex < options.length){
+  	text.style.fontFamily = options[selectedIndex] ; 
+  } else {
+    // Display an error message if the index is invalid
+    alert("Invalid selection!")  }
+} else {
+  // Display a message if the prompt was canceled or closed
+  alert("No option selected!");
+}
+			text.style.fontFamily = options[selectedIndex] ; 
+		}
+		function themeChangeToDark() {
+			bg.style.backgroundColor = "black" ;
+			bg.style.color = "white";
+			section.style.backgroundColor = "orangered";
+			themeDark.style.transition = "transform 2s ease, opacity 1.5s ease";
+			themeDark.style.transform = 'translateX(200px)';
+			themeLight.style.transform = 'translateX(0px)';
+			themeDark.disable = true;
+			themeLight.disable = false;
+			themeDark.style.opacity = "0";
+			themeLight.style.opacity = "1";
+			textArea.style.backgroundColor = "white";
+			textArea.style.color = "black";
+			textArea.style.borderTop = "4px solid orangered";
+			textArea.style.borderRight = "4px solid orangered";
+		}
+		function themeChangeToLight()
+		{ 
+			bg.style.backgroundColor = "white" ;
+			bg.style.color = "black";
+			section.style.backgroundColor = "cyan";
+			themeLight.style.transition = "transform 2s ease, opacity 1.5s ease";
+			themeLight.style.transform = 'translateX(-100px)';
+			themeDark.style.transform = 'translateX(0px)';
+			themeLight.disable = true;
+			themeDark.disable = false;
+			themeLight.style.opacity = "0";
+			themeDark.style.opacity = "1";
+			themeDark.style.backgroundColor = "black";
+			themeDark.style.color = "white";
+		}
+		function startPreview()
+		{
+			let wordCount = text.value.trim().toString().split(" ").length;
+			let char = text.value.trim().toString().split("").length
+			preview.innerHTML = `I have ${wordCount} word and ${char} characters`; 
+		
+		}
+	</script>
+
+</body>
+</html>
