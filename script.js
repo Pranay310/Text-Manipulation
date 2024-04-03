@@ -26,7 +26,15 @@
 			var options = ["Algerian", "Arial Black", "Bodoni MT Black", "Bahnschrift"];
 
 // Prompt the user to select an option
-var selectedIndex = prompt("Select an option and type option serial no:\n" + options.join("\n"));
+for(var i = 0; i <= options.length - 1; i++) 
+{
+	options.forEach((ele , indx)=>
+		{
+			
+			// prompt("Select an option and type option serial no:\n" + `${indx+1}. ${ele}`);
+		}
+		)
+}
 
 // Check if an option was selected
 if (selectedIndex !== null && selectedIndex !== "") {
